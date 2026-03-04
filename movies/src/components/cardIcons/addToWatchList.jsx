@@ -8,11 +8,11 @@ const AddToWatchListIcon = ({ movie }) => {
 
   const handleAddToWatchList = (e) => {
     e.preventDefault();
-    context.addToWatchList(movie);
+    context.addToMustWatch(movie);
   };
 
   return (
-    <IconButton aria-label="add to favorites" onClick={handleAddToWatchList}>
+    <IconButton aria-label="add to must watch" onClick={handleAddToWatchList}>
       <PlaylistAddIcon color="primary" fontSize="large" />
     </IconButton>
   );
