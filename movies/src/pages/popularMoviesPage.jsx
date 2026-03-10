@@ -33,4 +33,4 @@ const PopularMoviesPage = (props) => {
   );
 
 };
-export default {PopularMoviesPage};
+export default PopularMoviesPage;
