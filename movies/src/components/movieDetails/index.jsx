@@ -9,7 +9,7 @@ import StarRate from "@mui/icons-material/StarRate";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
-
+import { Link } from "react-router";
 
 const root = {
     display: "flex",
@@ -91,7 +91,9 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         </li>
         {credits?.cast.map((actor) => (
           <li key={actor.cast_id}>
-            <Chip label={actor.name} sx={{...chip}} />
+            <Link to={`/actors/${actor.id}`} style={{ textDecoration: 'none' }}>
+              <Chip label={`${actor.name} as ${actor.character}`} sx={{...chip}} clickable />
+            </Link>
           </li>
         ))}
       </Paper>
