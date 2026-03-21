@@ -21,7 +21,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie, credits, recommendations }) => {  // Don't miss this!
+const MovieDetails = ({ movie, credits, recommendations, watchProviders }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -131,6 +131,24 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           </li>
         ))}
       </Paper>
+
+      <Typography variant="h5" component="h3">
+        Where to Watch
+      </Typography>
+      <Paper
+        component="ul"
+        sx={{ ...root }}
+      >
+        <li>
+          <Chip label="Watch Providers" sx={{ ...chip }} color="primary" />
+        </li>
+        {watchProviders?.results?.IE?.flatrate?.map((provider) => (
+          <li key={provider.provider_id}>
+            <Chip label={provider.provider_name} sx={{ ...chip }} />
+          </li>
+        ))}
+      </Paper>
+  
 
       <Fab
         color="secondary"
