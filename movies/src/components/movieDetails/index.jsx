@@ -21,7 +21,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
+const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -78,6 +78,23 @@ const [drawerOpen, setDrawerOpen] = useState(false);
 
         </Paper>
 
+      <Typography variant="h5" component="h3">
+        Cast
+      </Typography>
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Cast" sx={{...chip}} color="primary" />
+        </li>
+        {credits?.cast.map((actor) => (
+          <li key={actor.id}>
+            <Chip label={actor.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
 
       <Fab
         color="secondary"
@@ -99,4 +116,7 @@ const [drawerOpen, setDrawerOpen] = useState(false);
       </>
   );
 };
+
+
 export default MovieDetails ;
+

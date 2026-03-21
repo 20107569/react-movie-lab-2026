@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from 'react-router';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from '../api/tmdb-api'
+import { getMovie, getMovieCredits } from '../api/tmdb-api'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 // import useMovie from "../hooks/useMovie";   Redundant
@@ -15,6 +15,11 @@ const MoviePage = (props) => {
     queryFn: getMovie,
   })
 
+    const { data: credits, error: creditsErrorMessage, isPending: creditsPending, isError: creditsError  } = useQuery({
+    queryKey: ['movieCredits', {id}],
+    queryFn: getMovieCredits,
+  })
+
   if (isPending) {
     return <Spinner />;
   }
@@ -23,13 +28,21 @@ const MoviePage = (props) => {
     return <h1>{error.message}</h1>;
   }
 
+  if (creditsPending) {
+    return <Spinner />;
+  }
+
+  if (creditsError) {
+    return <h1>{creditsErrorMessage.message}</h1>;
+  }
+
 
   return (
     <>
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+            <MovieDetails movie={movie} credits={credits} />
           </PageTemplate>
         </>
       ) : (
