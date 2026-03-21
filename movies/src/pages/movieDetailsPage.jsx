@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from 'react-router';
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie, getMovieCredits } from '../api/tmdb-api'
+import { getMovie, getMovieCredits, getMovieRecommendations } from '../api/tmdb-api'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 // import useMovie from "../hooks/useMovie";   Redundant
@@ -15,9 +15,14 @@ const MoviePage = (props) => {
     queryFn: getMovie,
   })
 
-    const { data: credits, error: creditsErrorMessage, isPending: creditsPending, isError: creditsError  } = useQuery({
+  const { data: credits, error: creditsErrorMessage, isPending: creditsPending, isError: creditsError  } = useQuery({
     queryKey: ['movieCredits', {id}],
     queryFn: getMovieCredits,
+  })
+
+  const { data: recommendations, error: recommendationsErrorMessage, isPending: recommendationsPending, isError: recommendationsError  } = useQuery({
+    queryKey: ['movieRecommendations', {id}],
+    queryFn: getMovieRecommendations,
   })
 
   if (isPending) {
@@ -36,13 +41,21 @@ const MoviePage = (props) => {
     return <h1>{creditsErrorMessage.message}</h1>;
   }
 
+  if (recommendationsPending) {
+    return <Spinner />;
+  }
+  
+  if (recommendationsError) {
+    return <h1>{recommendationsErrorMessage.message}</h1>;
+  }
+
 
   return (
     <>
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} credits={credits} />
+            <MovieDetails movie={movie} credits={credits} recommendations={recommendations} />
           </PageTemplate>
         </>
       ) : (

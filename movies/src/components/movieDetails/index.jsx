@@ -21,7 +21,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie, credits }) => {  // Don't miss this!
+const MovieDetails = ({ movie, credits, recommendations }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -90,8 +90,44 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           <Chip label="Cast" sx={{...chip}} color="primary" />
         </li>
         {credits?.cast.map((actor) => (
-          <li key={actor.id}>
+          <li key={actor.cast_id}>
             <Chip label={actor.name} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+
+      <Typography variant="h5" component="h3">
+        Crew
+      </Typography>
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Crew" sx={{...chip}} color="primary" />
+        </li>
+        {credits?.crew.map((person) => (
+          <li key={person.credit_id}>
+            <Chip label={`${person.name} - ${person.job}`} sx={{...chip}} />
+          </li>
+        ))}
+      </Paper>
+
+      <Typography variant="h5" component="h3">
+        Recommendations
+      </Typography>
+
+      <Paper 
+        component="ul" 
+        sx={{...root}}
+      >
+        <li>
+          <Chip label="Recommendations" sx={{...chip}} color="primary" />
+        </li>
+        {recommendations?.results.map((rec) => (
+          <li key={rec.id}>
+            <Chip label={rec.title} sx={{...chip}} />
           </li>
         ))}
       </Paper>
