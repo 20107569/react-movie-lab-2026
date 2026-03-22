@@ -42,10 +42,7 @@ const ActorPage = () => {
     <>
       <h1>{actor.name}</h1>
 
-      <img
-        src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-        alt={actor.name}
-      />
+      <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
 
       <p>{actor.biography || "No biography available."}</p>
 

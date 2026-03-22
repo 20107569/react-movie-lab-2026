@@ -127,9 +127,12 @@ const [drawerOpen, setDrawerOpen] = useState(false);
         <li>
           <Chip label="Recommendations" sx={{...chip}} color="primary" />
         </li>
+      
         {recommendations?.results.map((rec) => (
           <li key={rec.id}>
+            <Link to={`/movies/${rec.id}`} style={{ textDecoration: 'none' }}>
             <Chip label={rec.title} sx={{...chip}} />
+            </Link>
           </li>
         ))}
       </Paper>
