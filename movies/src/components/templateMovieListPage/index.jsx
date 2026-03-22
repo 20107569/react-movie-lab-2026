@@ -28,6 +28,18 @@ function MovieListPageTemplate({ movies, title, action }) {
     );
   }
 
+    if (sortBy === "rating_asc") {
+    displayedMovies = displayedMovies.sort((a, b) =>
+      a.vote_average - b.vote_average
+    );
+  }
+
+      if (sortBy === "rating_desc") {
+    displayedMovies = displayedMovies.sort((a, b) =>
+      b.vote_average - a.vote_average
+    );
+  }
+
   function handleChange(type, value) {
     if (type === "name") setNameFilter(value);
     else if (type === "genre") setGenreFilter(value);

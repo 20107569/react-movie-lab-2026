@@ -138,6 +138,8 @@ export default function FilterMoviesCard(props) {
             >
               <MenuItem value="0">None</MenuItem>
               <MenuItem value="title_asc">Title (A-Z)</MenuItem>
+              <MenuItem value="rating_asc">Rating (Low-High)</MenuItem>
+              <MenuItem value="rating_desc">Rating (High-Low)</MenuItem>
           </Select>
         </FormControl>
 
