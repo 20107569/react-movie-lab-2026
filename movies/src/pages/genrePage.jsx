@@ -22,13 +22,6 @@ const GenrePage = () => {
     queryFn: getGenres,
   })
 
-  // Extract the genre name that matches the ID in the URL
-    const genreName = genreData?.genres?.find( //Go get all genres from TMDB and store them in genreData
-        // Only continue if genreData exists (prevents crashing), look through list of genres and find the one that matches the URL id
-        (g) => g.id === Number(id) // Compare genre IDs (convert URL string to number) 
-    )?.name; // Once found, extract the genre name (like 'Crime')
-
-    // URL gives ID → we look up ID → we get name → we build title
 
   if (isPending) {
     return <Spinner />
@@ -52,7 +45,7 @@ const GenrePage = () => {
 
    return (
       <PageTemplate
-        title={`${genreName} Movies`}
+        title="Discover Movies"
         movies={movies}
         action={(movie) => {
           return <AddToFavoritesIcon movie={movie} />
