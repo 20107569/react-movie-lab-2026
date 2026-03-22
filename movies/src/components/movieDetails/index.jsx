@@ -43,11 +43,14 @@ const [drawerOpen, setDrawerOpen] = useState(false);
           <Chip label="Genres" sx={{...chip}} color="primary" />
         </li>
         {movie.genres.map((g) => (
-          <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+          <li key={g.id}>
+            <Link to={`/genre/${g.id}`} style={{ textDecoration: 'none' }}>
+              <Chip label={g.name} sx={{...chip}} clickable />
+            </Link>
           </li>
         ))}
       </Paper>
+      
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip

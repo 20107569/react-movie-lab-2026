@@ -53,6 +53,8 @@ export const getMovie = (args) => {
    });
   };
 
+ 
+
 
   export const getMovieImages = ({ queryKey }) => {
     const [, idPart] = queryKey;
@@ -242,6 +244,28 @@ export const getTopRatedMovies = () => {
     const { id } = idPart;
     return fetch(
       `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    ).then( (response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+   });
+  };
+
+  //new 
+
+      export const getMoviesByGenre = async({ queryKey }) => {
+    const [, idPart] = queryKey;
+    const { id } = idPart;
+    return fetch(
+      "https://api.themoviedb.org/3/discover/movie?api_key=" +
+      import.meta.env.VITE_TMDB_KEY +
+      "&with_genres=" + id
     ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {
