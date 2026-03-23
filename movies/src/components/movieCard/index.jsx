@@ -34,7 +34,7 @@ export default function MovieCard({ movie, action }) {
 
 
   return (
-    <Card>
+    <Card sx={{ borderRadius: '8px', boxShadow: 3 }}>
             <CardHeader
         avatar={
           movie.favorite ? (
@@ -61,13 +61,13 @@ export default function MovieCard({ movie, action }) {
       <CardContent>
         <Grid container>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
+            <Typography variant="body1" component="p" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <CalendarIcon fontSize="small" />
               {movie.release_date}
             </Typography>
           </Grid>
           <Grid size={{xs: 6}}>
-            <Typography variant="h6" component="p">
+            <Typography variant="body1" component="p" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
               <StarRateIcon fontSize="small" />
               {"  "} {movie.vote_average}{" "}
             </Typography>
