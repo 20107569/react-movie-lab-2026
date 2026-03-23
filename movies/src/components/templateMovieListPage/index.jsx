@@ -3,8 +3,10 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import MovieList from "../movieList";
 import Grid from "@mui/material/Grid";
+import Pagination from "@mui/material/Pagination";  
+import Stack from "@mui/material/Stack";
 
-function MovieListPageTemplate({ movies, title, action }) {
+function MovieListPageTemplate({ movies, title, action, page, setPage }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [ratingFilter, setRatingFilter] = useState("0");
@@ -66,7 +68,18 @@ function MovieListPageTemplate({ movies, title, action }) {
             sortBy={sortBy}
           />
         </Grid>
+
         <MovieList action={action} movies={displayedMovies}></MovieList>
+
+        <Grid key="list" size={12}>
+          <Stack spacing={2} sx={{ mt: 4, alignItems: "center"}}>
+            <Pagination
+              count={10}
+              page={page}
+              onChange={(e, value) => setPage(value)}
+            />
+          </Stack>
+        </Grid>
       </Grid>
     </Grid>
   );

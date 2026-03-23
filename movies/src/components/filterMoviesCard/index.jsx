@@ -61,7 +61,7 @@ export default function FilterMoviesCard(props) {
   const handleSortChange = (e) => {
     handleChange(e, "sort", e.target.value);
   };
-
+  
 
 
   return (

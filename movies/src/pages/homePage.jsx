@@ -7,11 +7,13 @@ import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 
 
 const HomePage = (props) => {
+  const [page, setPage] = React.useState(1);
 
   const { data, error, isPending, isError  } = useQuery({
-    queryKey: ['discover'],
-    queryFn: getMovies,
+    queryKey: ['discover', page],
+    queryFn: () => getMovies(page),
   })
+
   
   if (isPending) {
     return <Spinner />
@@ -35,6 +37,8 @@ const HomePage = (props) => {
         action={(movie) => {
           return <AddToFavoritesIcon movie={movie} />
         }}
+        page={page} 
+        setPage={setPage} 
       />
   );
 
