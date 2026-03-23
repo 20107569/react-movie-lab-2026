@@ -6,6 +6,7 @@ import Spinner from '../components/spinner';
 import { Link } from "react-router";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 
 
 const ActorPage = () => {
@@ -41,12 +42,13 @@ const ActorPage = () => {
   
 
   return (
+    <Box sx={{ maxWidth: '800px', margin: '20px auto', padding: '20px' }}>
     <>
       <Box sx={{ display: 'flex', gap: 3 , mb: 3 }}>
         <img 
           src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} 
           alt={actor.name} 
-          style={{ width: '200px', borderRadius: '8px' }} 
+          style={{ width: '200px', height: '300px', borderRadius: '8px' }} 
         />
 
         <Box>
@@ -59,14 +61,21 @@ const ActorPage = () => {
         </Typography>
       </Box>
 
-        <h2>Movies</h2>
-        {movies?.cast.map((movie) => (
-            <Link to={`/movies/${movie.id}`} key={movie.id}>
-                <p>{movie.title}</p>
+      <Divider sx={{ mb: 2 }} />
+
+        <Typography variant="h6" fontWeight="bold" gutterBottom>
+          Known For
+        </Typography>
+        {movies?.cast.slice(0, 10).map((movie) => (
+            <Link to={`/movies/${movie.id}`} key={movie.id} style={{ textDecoration: 'none' }}>
+              <Typography variant="body1" color="primary" sx={{ mb: 1 }}>
+                {movie.title}
+              </Typography>
             </Link>
         ))}
 
     </>
+    </Box>
   );
 };
 
