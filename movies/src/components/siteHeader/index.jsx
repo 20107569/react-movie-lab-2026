@@ -44,12 +44,12 @@ const SiteHeader = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="primary">
         <Toolbar>
-          <Typography variant="h4" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" fontWeight="bold" sx={{ flexGrow: 0, mr: 2 }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="subtitle1" sx={{ flexGrow: 1, opacity: 0.8, display: { xs: 'none', md: 'block' } }}>
             All you ever wanted to know about Movies!
           </Typography>
             {isMobile ? (
@@ -95,6 +95,7 @@ const SiteHeader = () => {
                     key={opt.label}
                     color="inherit"
                     onClick={() => handleMenuSelect(opt.path)}
+                    sx={{mx: 0.5, '&:hover': {backgroundColor: 'rgba(255, 255, 255, 0.15)'}}}
                   >
                     {opt.label}
                   </Button>
