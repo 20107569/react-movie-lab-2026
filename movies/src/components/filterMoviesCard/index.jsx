@@ -13,6 +13,7 @@ import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../spinner';
+import Box from "@mui/material/Box";
 
 
 const formControl = 
@@ -67,14 +68,18 @@ export default function FilterMoviesCard(props) {
   return (
     <Card 
       sx={{
-        backgroundColor: "rgb(204, 204, 0)"
+        backgroundColor: "#f8bbd0",
+        borderRadius: "12px",
+        boxShadow: 3,
       }} 
       variant="outlined">
       <CardContent>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
         <Typography variant="h5" component="h1">
-          <SearchIcon fontSize="large" />
+          <SearchIcon fontSize="large" color="primary" />
           Filter the movies.
         </Typography>
+        </Box>
             <TextField
                 sx={{...formControl}}
                 id="filled-search"
