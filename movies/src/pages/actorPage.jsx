@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
+import Chip from "@mui/material/Chip";
 
 
 const ActorPage = () => {
@@ -43,7 +44,7 @@ const ActorPage = () => {
 
   return (
     <Box sx={{ maxWidth: '800px', margin: '20px auto', padding: '20px' }}>
-    <>
+    
       <Box sx={{ display: 'flex', gap: 3 , mb: 3 }}>
         <img 
           src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} 
@@ -55,10 +56,11 @@ const ActorPage = () => {
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             {actor.name}
           </Typography>
+          {actor.birthday && <Chip label={`Born: ${actor.birthday}`} color="primary" sx={{ mb: 1 }} />}
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+            {actor.biography || "No biography available."}
+          </Typography>
         </Box>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
-          {actor.biography || "No biography available."}
-        </Typography>
       </Box>
 
       <Divider sx={{ mb: 2 }} />
@@ -73,8 +75,6 @@ const ActorPage = () => {
               </Typography>
             </Link>
         ))}
-
-    </>
     </Box>
   );
 };
