@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import { Link } from "react-router";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 
 const ActorPage = () => {
@@ -49,12 +50,13 @@ const ActorPage = () => {
         />
 
         <Box>
-          <h1>{actor.name}</h1>
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            {actor.name}
+          </Typography>
         </Box>
-      
-
-
-        <p>{actor.biography || "No biography available."}</p>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
+          {actor.biography || "No biography available."}
+        </Typography>
       </Box>
 
         <h2>Movies</h2>
