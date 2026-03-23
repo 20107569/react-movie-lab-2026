@@ -4,6 +4,7 @@ import { getPerson, getPersonMovies } from '../api/tmdb-api';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../components/spinner';
 import { Link } from "react-router";
+import Box from "@mui/material/Box";
 
 
 const ActorPage = () => {
@@ -40,11 +41,21 @@ const ActorPage = () => {
 
   return (
     <>
-      <h1>{actor.name}</h1>
+      <Box sx={{ display: 'flex', gap: 3 , mb: 3 }}>
+        <img 
+          src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} 
+          alt={actor.name} 
+          style={{ width: '200px', borderRadius: '8px' }} 
+        />
 
-      <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} />
+        <Box>
+          <h1>{actor.name}</h1>
+        </Box>
+      
 
-      <p>{actor.biography || "No biography available."}</p>
+
+        <p>{actor.biography || "No biography available."}</p>
+      </Box>
 
         <h2>Movies</h2>
         {movies?.cast.map((movie) => (
