@@ -17,6 +17,24 @@ import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
 import ActorPage from "./pages/actorPage";
 import GenrePage from "./pages/genrePage";
 import MustWatchPage from './pages/mustWatchPage';  
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: '#f381a7',
+      main: '#f06292',
+      dark: '#a84466',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#afd683',
+      main: '#9ccc65',
+      dark: '#6d8e46',
+      contrastText: '#fff',
+    },
+  },
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +50,7 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
       <BrowserRouter>
         <SiteHeader />
         <MoviesContextProvider>
@@ -53,6 +72,7 @@ const App = () => {
         </MoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };
